@@ -9,9 +9,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --- [PENTING] PERBAIKAN HTTPS ---
-// Memberi tahu Express untuk mempercayai header dari Reverse Proxy (Vercel/Heroku/Nginx)
-// Ini membuat req.protocol mendeteksi 'https' dengan benar.
 app.set('trust proxy', 1); 
 
 app.set('view engine', 'ejs');
@@ -25,15 +22,9 @@ app.use((req, res, next) => {
 
 // --- HALAMAN UTAMA (DOKUMENTASI) ---
 app.get('/', (req, res) => {
-  // Logika deteksi protokol yang lebih aman
-  // Prioritas: Header dari proxy (x-forwarded-proto) -> lalu req.protocol standar
-  const protocol = req.headers['x-forwarded-proto'] || req.protocol;
-  const host = req.get('host');
-  const baseUrl = `${protocol}://${host}`;
-
+  // Logika protokol/baseUrl telah dihapus
   res.render('docs', { 
-    PORT: PORT,
-    baseUrl: baseUrl
+    PORT: PORT
   });
 });
 
