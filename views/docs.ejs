@@ -55,7 +55,7 @@
         <div id="baseUrlBox"
             class="inline-flex items-center rounded-md border border-blue-500/30 bg-blue-500/10 px-3 py-1.5 text-xs font-mono gap-2 text-blue-400">
             <span class="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <%= baseUrl %>
+            https://dramabox-api-rho.vercel.app
         </div>
     </div>
 
@@ -339,7 +339,10 @@ Integrasi API untuk menampilkan seluruh episode drama dalam format JSON.
 </footer>
 
 <script>
-const baseUrl = "<%= request.protocol %>://<%= request.get('host') %>";
+// --- BAGIAN INI SUDAH DIUBAH (HARDCODED HTTPS) ---
+const baseUrl = "https://dramabox-api-rho.vercel.app";
+// ------------------------------------------------
+
 let currentLang = 'in'; 
 const languageMap = [
     { code: 'in', name: '🇮🇩 Indonesia' },
@@ -492,4 +495,3 @@ document.addEventListener('DOMContentLoaded', initializeLanguageSelector);
 
 </body>
 </html>
-
